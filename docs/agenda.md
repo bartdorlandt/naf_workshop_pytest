@@ -1,8 +1,5 @@
 ## Agenda
 
-!!! note "Agenda to be discussed"
-
-    This agenda is a draft proposal and subject to optimization based on proctor discussion. Timing and content may be adjusted.
 
 ### 14:00-14:15
 
