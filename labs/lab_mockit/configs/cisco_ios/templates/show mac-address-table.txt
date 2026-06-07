@@ -1,0 +1,10 @@
+campus01-bdr01#show mac address-table
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+   1    aabb.cc02.1031    DYNAMIC     Et0/1
+ 100    aabb.cc82.1000    DYNAMIC     Et0/1
+ 111    aabb.cc82.1000    DYNAMIC     Et0/1
+Total Mac Addresses for this criterion: 3

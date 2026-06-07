@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rpc-reply message-id="{message_id}"
+    xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <data>
+        Hello from cisco_ios!
+    </data>
+</rpc-reply>

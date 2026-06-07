@@ -1,0 +1,2 @@
+campus01-bdr01#show clock
+*18:59:06.558 EET Fri Oct 27 2023

@@ -1,0 +1,13 @@
+name: lab_mockit
+services:
+  cisco_ios:
+    image: registry.gitlab.com/slurpit.io/mockit:latest
+    container_name: cisco_ios
+    environment:
+      - DEVICE_TYPE=cisco_ios
+      - SSH_USERNAME=test
+      - SSH_PASSWORD=test
+    ports:
+      - "2222:22"
+    volumes:
+      - ./configs/cisco_ios:/configs/cisco_ios

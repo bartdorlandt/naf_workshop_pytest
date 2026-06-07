@@ -1,0 +1,12 @@
+Protocol Address Age (min) Hardware Addr Type Interface
+Internet  100.68.1.1              -   aabb.cc82.6000  ARPA   Vlan111
+Internet  100.68.1.2             80   aabb.cc82.1000  ARPA   Vlan111
+Internet  172.21.0.1              -   aabb.cc82.6000  ARPA   Vlan100
+Internet  172.21.0.2              4   aabb.cc82.1000  ARPA   Vlan100
+Internet  192.168.60.128        235   0050.5634.82fc  ARPA   Ethernet0/0
+Internet  192.168.60.132          0   000c.2993.b817  ARPA   Ethernet0/0
+Internet  192.168.60.133          2   0050.5632.1740  ARPA   Ethernet0/0
+Internet  192.168.60.194          -   aabb.cc02.6000  ARPA   Ethernet0/0
+Internet  192.168.60.195          -   b8:27:eb:4f:15:95  ARPA   Ethernet0/10
+Internet  192.168.60.196          -   b8:27:eb:4f:15:96  ARPA   Ethernet0/20
+Internet  192.168.60.197          -   b8:27:eb:4f:15:97  ARPA   Ethernet0/30

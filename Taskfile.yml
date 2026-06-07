@@ -1,0 +1,145 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+vars:
+  ARTIFACTS: "/tmp/act-artifacts"
+  ACTPATH: "solutions/lab_cicd"
+  MAIN_OPTIONS: "--allow-local-files"
+  METADATA: "--title 'It Works on My Machine - (Py)Test your Automation'
+    --author 'Urs Baumann, Steinn Orvar Bjarnarson, Bart Dorlandt' --keywords
+    'pytest, network, automation' --description 'Some slides for the workshop.'"
+
+tasks:
+  default: task -l --sort none
+
+  serve:
+    desc: Serve the site locally at http://localhost:8000/
+    platforms:
+      - darwin
+    cmd: |
+      export DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib
+      open http://localhost:8000/
+      uv run --group doc mkdocs serve --livereload
+
+  build:
+    desc: Build the site locally
+    platforms:
+      - darwin
+    cmd: |
+      export DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib
+      ENABLE_PDF_EXPORT=1 uv run --group doc mkdocs build
+
+  init:
+    desc: Initialize this repo without dev dependencies
+    cmds:
+      - uv sync
+
+  ### Initialize the repo
+  dev_init:
+    desc: Initialize this repo install all dependencies for uv and mac
+    cmds:
+      - task: dev_init:uv
+      - task: dev_init:mac
+
+  dev_init:uv:
+    desc: Initialize this repo with python dependencies with uv
+    cmds:
+      - uv sync --group dev --group doc
+
+  dev_init:mac:
+    desc: Initialize this repo with mac dependencies
+    platforms:
+      - darwin
+    cmds:
+      - brew install cairo freetype libffi libjpeg libpng zlib pngquant pango
+
+  clean_venv:
+    desc: Clean up the .venv directory
+    platforms:
+      - darwin
+      - linux
+    cmds:
+      - rm -rf .venv
+
+  verify:refactor:
+    desc: Run pytest on the lab
+    dir: lab_refactoring
+    cmds:
+      - uv run pytest -v .
+
+  verify:fixtures:
+    desc: Run pytest on the lab
+    dir: lab_fixtures
+    cmds:
+      - uv run pytest -v .
+
+  verify:mocking:
+    desc: Run pytest on the lab
+    dir: lab_mocking
+    cmds:
+      - uv run pytest -v .
+
+  verify:parametrize:
+    desc: Run pytest on the lab
+    dir: lab_parametrization
+    cmds:
+      - uv run pytest -v .
+
+  act:ex1:
+    desc: Run the ex1_minimal workflow locally using act
+    cmds:
+      - act -W {{.ACTPATH}}/ex1_minimal.yml
+
+  act:ex2:
+    desc: Run the ex2_junit workflow locally using act
+    cmds:
+      - act -W {{.ACTPATH}}/ex2_junit.yml --artifact-server-path {{.ARTIFACTS}}
+
+  act:ex3:
+    desc: Run the ex3_lint_and_test workflow locally using act
+    cmds:
+      - act -W {{.ACTPATH}}/ex3_lint_and_test.yml --artifact-server-path {{.ARTIFACTS}}
+
+  act:ex4:
+    desc: Run the ex4_matrix workflow locally using act
+    cmds:
+      - act -W {{.ACTPATH}}/ex4_matrix.yml --artifact-server-path {{.ARTIFACTS}}
+
+  cicd:all:
+    desc: Run all cicd solution workflows locally using act
+    cmds:
+      - task: act:ex1
+      - task: act:ex2
+      - task: act:ex3
+      - task: act:ex4
+
+  fix:ruff:
+    desc: Run ruff to fix linting issues in the lab
+    dir: "solutions/"
+    cmds:
+      - uv run ruff format .
+      - uv run ruff check --fix .
+
+  solutions:verify:
+    desc: Run pytest on all solution labs
+    cmds:
+      - for: [lab_refactoring, lab_fixtures, lab_mocking, lab_parametrization]
+        cmd: "uv run pytest -v solutions/{{.ITEM}}"
+
+  present:
+    desc: Present the presentation
+    dir: slides
+    vars:
+      OPTIONS: "{{.MAIN_OPTIONS}}"
+    cmds:
+      - open http://localhost:8080/
+      - marp -s {{.OPTIONS}} . -w
+
+  export:pptx:
+    desc: Export the presentation to PPTX
+    dir: slides
+    vars:
+      OPTIONS: "{{.MAIN_OPTIONS}} --pptx-editable {{.METADATA}}"
+    cmds:
+      - marp {{.OPTIONS}} presentation.md -o presentation.pptx

@@ -1,0 +1,20 @@
+campus01-bdr01#show cdp neighbors detail
+-------------------------
+Device ID: campus01-core01.netyce.lab
+Entry address(es):
+  IP address: 172.21.0.2
+Platform: Linux Unix,  Capabilities: Router Switch IGMP
+Interface: Ethernet0/1,  Port ID (outgoing port): Ethernet1/3
+Holdtime : 120 sec
+
+Version :
+Cisco IOS Software, Solaris Software (I86BI_LINUXL2-ADVENTERPRISEK9-M), Experimental Version 15.1(20140814:053243) [mmen 112]
+Copyright (c) 1986-2014 by Cisco Systems, Inc.
+Compiled Thu 14-Aug-14 08:28 by mmen
+
+advertisement version: 2
+VTP Management Domain: ''
+Native VLAN: 1
+Duplex: half
+Management address(es):
+  IP address: 172.21.0.2

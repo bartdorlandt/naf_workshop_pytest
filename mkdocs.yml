@@ -1,0 +1,77 @@
+---
+site_name: "NAF Workshop WS:B4 - AutoCon5"
+site_description: It Works on My Machine — (Py)Test your Automation
+nav:
+  - FAQ: "index.md"
+  - Agenda: "agenda.md"
+  - Testable Code: "testable_code.md"
+  - LAB Refactoring: "lab_refactoring.md"
+  - Fixtures: "fixtures.md"
+  - LAB Fixtures: "lab_fixtures.md"
+  - Mocking: "mocking.md"
+  - LAB Mocking: "lab_mocking.md"
+  - Parametrization: "parametrization.md"
+  - LAB Parametrization: "lab_parametrization.md"
+  - CI/CD Integration: "cicd.md"
+  - LAB CI/CD: "lab_cicd.md"
+  - LAB Mock'it: "lab_mockit.md"
+
+repo_url: https://github.com/ubaumann/naf_workshop_pytest
+repo_name: ubaumann/naf_workshop_pytest
+
+theme:
+  name: material
+  logo: img/NAF.png
+  favicon: img/favicon.png
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: custom
+  features:
+    - navigation.tracking
+    - content.code.copy
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - with-pdf:
+      author: Urs Baumann, Steinn Orvar Bjarnarson, Bart Dorlandt
+      copyright: ""
+      #
+      #cover: false
+      #back_cover: true
+      #cover_title: TITLE TEXT
+      cover_subtitle: "(Py)Test your Automation"
+      # custom_template_path: "stylesheets/pdf.css"
+      #
+      # toc_title: TOC TITLE TEXT
+      #heading_shift: false
+      #toc_level: 3
+      #ordered_chapter_level: 2
+      #excludes_children:
+      #    - 'release-notes/:upgrading'
+      #    - 'release-notes/:changelog'
+      #
+      #exclude_pages:
+      #    - 'bugs/'
+      #    - 'appendix/contribute/'
+      #convert_iframe:
+      #    - src: IFRAME SRC
+      #      img: POSTER IMAGE URL
+      #      text: ALTERNATE TEXT
+      #    - src: ...
+      #two_columns_level: 3
+      #
+      #render_js: true
+      #headless_chrome_path: headless-chromium
+      #
+      output_path: workshop.pdf
+      enabled_if_env: ENABLE_PDF_EXPORT
+      #
+      # debug_html: true
+      #show_anchors: true
+      # verbose: true
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences

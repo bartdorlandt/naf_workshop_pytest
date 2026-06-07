@@ -1,0 +1,89 @@
+{
+    "SNMPv2-MIB": [
+        {
+            "name": "sysName",
+            "type": "string",
+            "value": "cisco_ios.slurpit.io"
+        },
+        {
+            "name": "sysDescr",
+            "type": "string",
+            "value": "Cisco IOS Software [Amsterdam], Virtual Software , Version 17.3.5, RELEASE SOFTWARE (fc2)\r\nTechnical Support: http://www.cisco.com/techsupport\r\nCopyright (c) 1986-2022 by Cisco Systems, Inc.\r\nCompiled Wed 09-Feb-22 10:3"
+        },
+        {
+            "name": "sysObjectID",
+            "type": "id",
+            "value": "1.3.6.1.4.1.9.1.1537"
+        },
+        {
+            "name": "sysContact",
+            "type": "string",
+            "value": "Pieter van Os"
+        },
+        {
+            "name": "sysLocation",
+            "type": "string",
+            "value": "Flock9 B.V. Amsterdam, The Netherlands"
+        },
+        {
+            "name": "sysServices",
+            "type": "integer",
+            "value": "78"
+        },
+        {
+            "name": "sysUpTime",
+            "type": "timeticks",
+            "value": "8602865"
+        }
+    ],
+    "ENTITY-MIB": [
+        {
+            "name": "entPhysicalAlias",
+            "type": "string",
+            "value": "",
+            "suffix": "1"
+        },
+        {
+            "name": "entPhysicalDescr",
+            "type": "string",
+            "value": "Cisco CSR1000V Chassis",
+            "suffix": "1"
+        },
+        {
+            "name": "entPhysicalFirmwareRev",
+            "type": "string",
+            "value": "",
+            "suffix": "1"
+        },
+        {
+            "name": "entPhysicalHardwareRev",
+            "type": "string",
+            "value": "V00",
+            "suffix": "1"
+        },
+        {
+            "name": "entPhysicalModelName",
+            "type": "string",
+            "value": "CSR1000V",
+            "suffix": "1"
+        },
+        {
+            "name": "entPhysicalName",
+            "type": "string",
+            "value": "Chassis",
+            "suffix": "1"
+        },
+        {
+            "name": "entPhysicalSerialNum",
+            "type": "string",
+            "value": "90MZTH4EFTM",
+            "suffix": "1"
+        },
+        {
+            "name": "entPhysicalSoftwareRev",
+            "type": "string",
+            "value": "17.3.5",
+            "suffix": "1"
+        }
+    ]
+}

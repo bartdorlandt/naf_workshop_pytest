@@ -1,0 +1,9 @@
+.venv
+__pycache__
+
+# Exercise paths
+!/labs/
+/lab_*/
+
+/slides/*pptx
+/slides/*pptx#

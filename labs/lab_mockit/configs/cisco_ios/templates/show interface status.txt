@@ -1,0 +1,5 @@
+Port Name Status Vlan Duplex Speed Type
+Et0/0     from netyce        connected    routed       auto   auto unknown
+Et0/1                        connected    trunk        auto   auto unknown
+Et0/2                        connected    1            auto   auto unknown
+Et0/3                        connected    1            auto   auto unknown

@@ -1,0 +1,9 @@
+devices:
+  - hostname: sw01
+    ip: 192.168.1.1
+    vendor: arista
+    expected_driver: eos
+  - hostname: rtr01
+    ip: 192.168.1.2
+    vendor: cisco
+    expected_driver: ios
