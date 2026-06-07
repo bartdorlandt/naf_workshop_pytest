@@ -16,8 +16,8 @@ nav:
   - LAB CI/CD: "lab_cicd.md"
   - LAB Mock'it: "lab_mockit.md"
 
-repo_url: https://github.com/ubaumann/naf_workshop_pytest
-repo_name: ubaumann/naf_workshop_pytest
+repo_url: https://github.com/bartdorlandt/naf_workshop_pytest
+repo_name: bartdorlandt/naf_workshop_pytest
 
 theme:
   name: material
