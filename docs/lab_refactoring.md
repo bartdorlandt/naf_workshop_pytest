@@ -87,6 +87,17 @@ Run your tests:
 pytest -v lab_refactoring/test_vlan_provisioning.py
 ```
 
+> Did you run into ImportModule Error, change:
+
+```python
+from vlan_provisioning import validate_vlan_id, generate_vlan_config
+```
+to
+
+```python
+from .vlan_provisioning import validate_vlan_id, generate_vlan_config
+```
+
 > In this lab we'll not work on mocking the device connection, we'll come back to that later.
 
 ---
