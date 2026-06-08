@@ -1,0 +1,1132 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="It Works on My Machine — (Py)Test your Automation">
+      
+      
+      
+      
+        <link rel="prev" href="../testable_code/">
+      
+      
+        <link rel="next" href="../fixtures/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>LAB Refactoring - NAF Workshop WS:B4 - AutoCon5</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-refactoring-for-testability" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NAF Workshop WS:B4 - AutoCon5" class="md-header__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="../img/NAF.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NAF Workshop WS:B4 - AutoCon5
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LAB Refactoring
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NAF Workshop WS:B4 - AutoCon5" class="md-nav__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="../img/NAF.png" alt="logo">
+
+    </a>
+    NAF Workshop WS:B4 - AutoCon5
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agenda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agenda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testable_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testable Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Refactoring
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Refactoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-vlan-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 1: VLAN Provisioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-config-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 2: Config Backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-inventory-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 3: Inventory Client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-device-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 4: Device Registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mocking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_mocking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_mockit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mock'it
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-vlan-provisioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 1: VLAN Provisioning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-config-backup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 2: Config Backup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-inventory-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 3: Inventory Client
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-device-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 4: Device Registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lab-refactoring-for-testability">LAB: Refactoring for Testability</h1>
+<p>The <code>labs/lab_refactoring/</code> directory contains four deliberately tightly coupled scripts. Each one demonstrates anti-patterns that make automated testing difficult:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Anti-patterns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vlan_provisioning.py</code></td>
+<td>Device connection created inside the function; hardcoded credentials; config generation mixed with device I/O</td>
+</tr>
+<tr>
+<td><code>config_backup.py</code></td>
+<td>Device connection, file I/O, and filename logic all combined; hardcoded credentials and path</td>
+</tr>
+<tr>
+<td><code>inventory_client.py</code></td>
+<td>HTTP call and data transformation in the same function; hardcoded URL and token</td>
+</tr>
+<tr>
+<td><code>device_registry.py</code></td>
+<td>Database connection created inside every function; SQL injection risk; query and transformation mixed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="objective">Objective</h2>
+<p>Refactor tightly coupled automation scripts into clean, testable modules by separating business logic from external interactions.</p>
+<h2 id="setup">Setup</h2>
+<p>Ensure your virtual environment is set up and activated:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># from the root of this project</span>
+uv<span class="w"> </span>sync
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+
+<span class="c1"># copy the lab files to your working directory to work with a copy</span>
+cp<span class="w"> </span>-r<span class="w"> </span>labs/lab_refactoring<span class="w"> </span>.
+</code></pre></div>
+<p>Ensure your editor is aware of the virtual environment.</p>
+<hr />
+<h2 id="exercise-1-vlan-provisioning">Exercise 1: VLAN Provisioning</h2>
+<div class="admonition tip">
+<p class="admonition-title">Learning goals</p>
+<ul>
+<li>Small, well-named functions are easier to read and easier to test</li>
+<li>If a function does one thing, you know exactly what to assert</li>
+<li>Testing pure functions requires no devices, no mocks — just inputs and outputs</li>
+</ul>
+</div>
+<p>Open <code>lab_refactoring/vlan_provisioning.py</code> and read through it.</p>
+<p><strong>Identify the problems:</strong></p>
+<ol>
+<li>Where is the VLAN ID validation? Could you test it without connecting to a device?</li>
+<li>Where is the config string built? Could you test that without a real device?</li>
+<li>What would happen if you called this function in a test suite?</li>
+</ol>
+<p><strong>Refactor:</strong> extract these two functions into your copy of <code>vlan_provisioning.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_vlan_id</span><span class="p">(</span><span class="n">vlan_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raise ValueError if vlan_id is outside the valid range 1–4094.&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_vlan_config</span><span class="p">(</span><span class="n">vlan_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">vlan_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">interface</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the EOS config block as a string.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Write tests</strong> in <code>lab_refactoring/test_vlan_provisioning.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">vlan_provisioning</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_vlan_id</span><span class="p">,</span> <span class="n">generate_vlan_config</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_validate_vlan_id_valid</span><span class="p">():</span>
+    <span class="n">validate_vlan_id</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># should not raise</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_validate_vlan_id_out_of_range</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">validate_vlan_id</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_generate_vlan_config_contains_vlan_id</span><span class="p">():</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">generate_vlan_config</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;PROD&quot;</span><span class="p">,</span> <span class="s2">&quot;Ethernet1&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;vlan 100&quot;</span> <span class="ow">in</span> <span class="n">config</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_generate_vlan_config_contains_interface</span><span class="p">():</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">generate_vlan_config</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;PROD&quot;</span><span class="p">,</span> <span class="s2">&quot;Ethernet1&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;interface Ethernet1&quot;</span> <span class="ow">in</span> <span class="n">config</span>
+</code></pre></div>
+<p>Run your tests:</p>
+<div class="highlight"><pre><span></span><code>pytest<span class="w"> </span>-v<span class="w"> </span>lab_refactoring/test_vlan_provisioning.py
+</code></pre></div>
+<blockquote>
+<p>Did you run into ImportModule Error, change:</p>
+</blockquote>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">vlan_provisioning</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_vlan_id</span><span class="p">,</span> <span class="n">generate_vlan_config</span>
+</code></pre></div>
+to</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">.vlan_provisioning</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_vlan_id</span><span class="p">,</span> <span class="n">generate_vlan_config</span>
+</code></pre></div>
+<blockquote>
+<p>In this lab we'll not work on mocking the device connection, we'll come back to that later.</p>
+</blockquote>
+<hr />
+<h2 id="exercise-2-config-backup">Exercise 2: Config Backup</h2>
+<div class="admonition tip">
+<p class="admonition-title">Learning goals</p>
+<ul>
+<li>Functions that call <code>datetime.now()</code> internally produce unpredictable output — impossible to assert against</li>
+<li>Passing time as a parameter gives tests full control</li>
+<li>The <code>tmp_path</code> fixture gives each test its own temporary directory, automatically cleaned up</li>
+</ul>
+</div>
+<p>Open <code>lab_refactoring/config_backup.py</code> and read through it.</p>
+<p><strong>Identify the problems:</strong></p>
+<ol>
+<li><code>backup_device_config</code> does at least three distinct things — what are they?</li>
+<li>If you wrote <code>assert "20240608" in filename</code>, would that ever reliably pass?</li>
+<li>What does the function write to disk, and where?</li>
+</ol>
+<p><strong>Refactor:</strong> extract these two functions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_backup_filename</span><span class="p">(</span><span class="n">hostname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">backup_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the full backup filepath as a string.&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">write_backup</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Write content to filename, creating parent directories as needed.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Write tests</strong> in <code>lab_refactoring/test_config_backup.py</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">config_backup</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_backup_filename</span><span class="p">,</span> <span class="n">write_backup</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_generate_backup_filename_contains_hostname</span><span class="p">():</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">generate_backup_filename</span><span class="p">(</span><span class="s2">&quot;spine-01&quot;</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="s2">&quot;/backups&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;spine-01&quot;</span> <span class="ow">in</span> <span class="n">result</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_generate_backup_filename_contains_timestamp</span><span class="p">():</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2024</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">generate_backup_filename</span><span class="p">(</span><span class="s2">&quot;spine-01&quot;</span><span class="p">,</span> <span class="n">ts</span><span class="p">,</span> <span class="s2">&quot;/backups&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;20240608_143000&quot;</span> <span class="ow">in</span> <span class="n">result</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_write_backup_creates_file</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;spine-01_backup.cfg&quot;</span><span class="p">)</span>
+    <span class="n">write_backup</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;hostname spine-01&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">Path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;hostname spine-01&quot;</span>
+</code></pre></div>
+<p>Run your tests:</p>
+<div class="highlight"><pre><span></span><code>pytest<span class="w"> </span>-v<span class="w"> </span>lab_refactoring/test_config_backup.py
+</code></pre></div>
+<p>Notice that because <code>timestamp</code> is a parameter, you pass a hardcoded <code>datetime</code> object. No randomness, no flakiness.</p>
+<hr />
+<h2 id="exercise-3-inventory-client">Exercise 3: Inventory Client</h2>
+<div class="admonition tip">
+<p class="admonition-title">Learning goals</p>
+<ul>
+<li>Passing the HTTP client as a parameter means tests never touch the network</li>
+<li>Separating data fetching from data transformation lets you test the transformation logic with plain dicts</li>
+<li>A factory helper function reduces repetition across many test cases</li>
+</ul>
+</div>
+<p>Open <code>lab_refactoring/inventory_client.py</code> and read through it.</p>
+<p><strong>Identify the problems:</strong></p>
+<ol>
+<li>To test <code>get_active_devices_in_site</code>, what would you need to set up? What could go wrong?</li>
+<li>Could you test the transformation logic (building the dict with <code>name</code>, <code>ip</code>, <code>role</code>, <code>site</code>) without any HTTP call?</li>
+</ol>
+<p><strong>Refactor:</strong> split the function in two:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transform_device_data</span><span class="p">(</span><span class="n">raw_devices</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert raw NetBox device dicts to simplified dicts.&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fetch_devices</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">base_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">site_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;active&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fetch raw device list from the API. client must have a .get() method.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p><strong>Write tests</strong> in <code>lab_refactoring/test_inventory_client.py</code>. Use a helper function to build test data without repeating yourself:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">inventory_client</span><span class="w"> </span><span class="kn">import</span> <span class="n">transform_device_data</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">make_raw_device</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;leaf-01&quot;</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="s2">&quot;10.0.0.1/32&quot;</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;leaf&quot;</span><span class="p">,</span> <span class="n">site</span><span class="o">=</span><span class="s2">&quot;amsterdam&quot;</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+        <span class="s2">&quot;primary_ip&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">ip</span><span class="p">},</span>
+        <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;slug&quot;</span><span class="p">:</span> <span class="n">role</span><span class="p">},</span>
+        <span class="s2">&quot;site&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;slug&quot;</span><span class="p">:</span> <span class="n">site</span><span class="p">},</span>
+    <span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_transform_extracts_name</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">transform_device_data</span><span class="p">([</span><span class="n">make_raw_device</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;spine-01&quot;</span><span class="p">)])</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;spine-01&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_transform_strips_cidr</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">transform_device_data</span><span class="p">([</span><span class="n">make_raw_device</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;10.0.0.1/32&quot;</span><span class="p">)])</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;ip&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;10.0.0.1&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_transform_handles_no_ip</span><span class="p">():</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">make_raw_device</span><span class="p">()</span>
+    <span class="n">device</span><span class="p">[</span><span class="s2">&quot;primary_ip&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">transform_device_data</span><span class="p">([</span><span class="n">device</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;ip&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span>
+</code></pre></div>
+<p>Run your tests:</p>
+<div class="highlight"><pre><span></span><code>pytest<span class="w"> </span>-v<span class="w"> </span>lab_refactoring/test_inventory_client.py
+</code></pre></div>
+<hr />
+<h2 id="exercise-4-device-registry">Exercise 4: Device Registry</h2>
+<div class="admonition warning">
+<p class="admonition-title">Stretch exercise</p>
+<p>This exercise introduces SQL injection and in-memory databases. If you're short on time, come back to it after the other exercises.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Learning goals</p>
+<ul>
+<li>Building SQL queries with f-strings lets attackers control your database — parameterized queries prevent this</li>
+<li>Passing the database connection as a parameter lets tests use an in-memory database: fast, isolated, no files left behind</li>
+<li>A fixture that creates the in-memory DB and tears it down is the standard pattern for database tests</li>
+</ul>
+</div>
+<p>Open <code>lab_refactoring/device_registry.py</code> and read through it.</p>
+<p><strong>Identify the problems:</strong></p>
+<ol>
+<li>Find the two f-string SQL queries. What would happen if you passed <code>"amsterdam' OR '1'='1"</code> as the <code>site</code> argument?</li>
+<li>What file on disk does the code write to on every call? What would happen to that file during a test run?</li>
+</ol>
+<p><strong>Refactor:</strong> extract three functions:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_device_record</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return a dict from a DB row tuple, or None if IP is empty.&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_device</span><span class="p">(</span><span class="n">conn</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">hostname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ip_address</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">device_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">site</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insert a device record using parameterized queries.&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_devices_for_site</span><span class="p">(</span><span class="n">conn</span><span class="p">:</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">Connection</span><span class="p">,</span> <span class="n">site</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return devices for a site, excluding those without an IP.&quot;&quot;&quot;</span>
+</code></pre></div>
+<p>Use parameterized queries (<code>?</code> placeholders) instead of f-strings in <code>add_device</code> and <code>get_devices_for_site</code>.</p>
+<p><strong>Write tests</strong> in <code>lab_refactoring/test_device_registry.py</code>. The key is the <code>db</code> fixture — it creates a fresh in-memory database for each test:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">device_registry</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_device</span><span class="p">,</span> <span class="n">get_devices_for_site</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">db</span><span class="p">():</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;:memory:&quot;</span><span class="p">)</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        CREATE TABLE devices (</span>
+<span class="s2">            hostname TEXT, ip_address TEXT, device_type TEXT, site TEXT</span>
+<span class="s2">        )</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="k">yield</span> <span class="n">conn</span>
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_add_device_stores_record</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">add_device</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="s2">&quot;leaf-01&quot;</span><span class="p">,</span> <span class="s2">&quot;10.0.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;switch&quot;</span><span class="p">,</span> <span class="s2">&quot;amsterdam&quot;</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT hostname FROM devices&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;leaf-01&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_get_devices_excludes_no_ip</span><span class="p">(</span><span class="n">db</span><span class="p">):</span>
+    <span class="n">add_device</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="s2">&quot;leaf-01&quot;</span><span class="p">,</span> <span class="s2">&quot;10.0.0.1&quot;</span><span class="p">,</span> <span class="s2">&quot;switch&quot;</span><span class="p">,</span> <span class="s2">&quot;amsterdam&quot;</span><span class="p">)</span>
+    <span class="n">add_device</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="s2">&quot;leaf-02&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;switch&quot;</span><span class="p">,</span> <span class="s2">&quot;amsterdam&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">get_devices_for_site</span><span class="p">(</span><span class="n">db</span><span class="p">,</span> <span class="s2">&quot;amsterdam&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;hostname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;leaf-01&quot;</span>
+</code></pre></div>
+<p>Run your tests:</p>
+<div class="highlight"><pre><span></span><code>pytest<span class="w"> </span>-v<span class="w"> </span>lab_refactoring/test_device_registry.py
+</code></pre></div>
+<hr />
+<h2 id="checkpoint">Checkpoint</h2>
+<div class="admonition success">
+<p class="admonition-title">Solution</p>
+<p>A complete solution for this lab is provided in the <code>solutions/lab_refactoring/</code> directory.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tracking", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

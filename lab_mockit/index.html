@@ -1,0 +1,1088 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="It Works on My Machine — (Py)Test your Automation">
+      
+      
+      
+      
+        <link rel="prev" href="../lab_cicd/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>LAB Mock'it - NAF Workshop WS:B4 - AutoCon5</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-mockit-testing-against-a-simulated-device" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NAF Workshop WS:B4 - AutoCon5" class="md-header__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="../img/NAF.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NAF Workshop WS:B4 - AutoCon5
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              LAB Mock'it
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NAF Workshop WS:B4 - AutoCon5" class="md-nav__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="../img/NAF.png" alt="logo">
+
+    </a>
+    NAF Workshop WS:B4 - AutoCon5
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agenda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agenda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testable_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testable Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_refactoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Refactoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mocking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_mocking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mock'it
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mock'it
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-start-the-mock-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Start the mock device
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-confirm-ssh-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Confirm SSH access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-copy-the-lab-files-to-your-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Copy the lab files to your working directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-mockit-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Mock'it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-connectivity-and-show-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 1: Connectivity and Show Version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-parse-show-ip-interface-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 2: Parse Show IP Interface Brief
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-parse-show-ip-bgp-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 3: Parse Show IP BGP Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-parametrize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 4: Parametrize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teardown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teardown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objective" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Objective
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-start-the-mock-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Start the mock device
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-confirm-ssh-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Confirm SSH access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-copy-the-lab-files-to-your-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Copy the lab files to your working directory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-mockit-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Mock'it works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-connectivity-and-show-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 1: Connectivity and Show Version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-parse-show-ip-interface-brief" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 2: Parse Show IP Interface Brief
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-3-parse-show-ip-bgp-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 3: Parse Show IP BGP Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-4-parametrize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise 4: Parametrize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#teardown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teardown
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lab-mockit-testing-against-a-simulated-device">LAB: Mock'it — Testing Against a Simulated Device</h1>
+<h2 id="objective">Objective</h2>
+<p>Write pytest tests that connect to a real (but simulated) Cisco IOS device running in Docker, send CLI commands, parse the output, and assert the results are correct.</p>
+<p>This is the complement to the mocking lab: instead of replacing the device with a Python <code>Mock</code>, you run an actual SSH endpoint that returns <strong>deterministic, file-backed responses</strong> — making it fully testable without hardware.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><a href="https://docs.docker.com/get-docker/">Docker</a> and Docker Compose installed and running</li>
+<li>The rest of the workshop setup (<code>uv sync</code>, virtual env activated)</li>
+</ul>
+<h2 id="setup">Setup</h2>
+<h3 id="1-start-the-mock-device">1. Start the mock device</h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>labs/lab_mockit
+docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<p>Verify it's running:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>ps
+<span class="c1"># cisco_ios should show &quot;running&quot;</span>
+</code></pre></div>
+<h3 id="2-confirm-ssh-access">2. Confirm SSH access</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># SSH to the mock device on localhost:2222</span>
+<span class="c1"># Ignore host key checking since it&#39;s a mock device and has a freshly generated key each time</span>
+ssh<span class="w"> </span>-p<span class="w"> </span><span class="m">2222</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">StrictHostKeyChecking</span><span class="o">=</span>no<span class="w"> </span>-o<span class="w"> </span><span class="nv">UserKnownHostsFile</span><span class="o">=</span>/dev/null<span class="w"> </span>test@localhost
+<span class="c1"># password: test</span>
+<span class="c1"># You should land at a Cisco IOS prompt</span>
+</code></pre></div>
+<p>Type <code>show version</code> to confirm you get output, then <code>exit</code>.</p>
+<h3 id="3-copy-the-lab-files-to-your-working-directory">3. Copy the lab files to your working directory</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># from the root of this project</span>
+cp<span class="w"> </span>labs/lab_mockit/device_connector.py<span class="w"> </span>.
+cp<span class="w"> </span>labs/lab_mockit/output_parser.py<span class="w"> </span>.
+</code></pre></div>
+<p>The lab provides two stub modules:</p>
+<ul>
+<li><code>device_connector.py</code> — functions to open an SSH session and run commands via Netmiko</li>
+<li><code>output_parser.py</code> — functions that parse raw CLI output into Python data structures</li>
+</ul>
+<p>Your job is to <strong>implement the parsers and write tests</strong> that verify them against the live mock device.</p>
+<h2 id="how-mockit-works">How Mock'it works</h2>
+<p>The mock device serves static response files over SSH. When you run <code>show version</code>, it reads <code>configs/cisco_ios/templates/show version.txt</code> and returns that content verbatim. The responses are <strong>fixed</strong>, so your tests will always get the same output — making assertions reliable and repeatable.</p>
+<p>The template files are mounted from <code>labs/lab_mockit/configs/cisco_ios/templates/</code>. You can read them directly to understand what output to expect before writing your tests.</p>
+<h2 id="exercise-1-connectivity-and-show-version">Exercise 1: Connectivity and Show Version</h2>
+<p>Implement <code>get_connection()</code> and <code>send_command()</code> in <code>device_connector.py</code>, then write tests that:</p>
+<ul>
+<li>Open a connection to <code>127.0.0.1:2222</code> with username/password <code>test</code></li>
+<li>Assert <code>connection.is_alive()</code> returns <code>True</code></li>
+<li>Send <code>show version</code> and assert the output is non-empty</li>
+<li>Assert the output contains <code>"IOS XE"</code></li>
+<li>Implement <code>parse_ios_version()</code> to extract <code>version</code>, <code>hostname</code>, and interface count</li>
+<li>Assert the parsed values match the template file</li>
+</ul>
+<p>Use a session-scoped fixture in <code>conftest.py</code> so the SSH connection is opened once and reused across all tests.</p>
+<h2 id="exercise-2-parse-show-ip-interface-brief">Exercise 2: Parse Show IP Interface Brief</h2>
+<p>Send <code>show ip interface brief</code> and implement <code>parse_ip_interface_brief()</code>.</p>
+<ul>
+<li>Parse each interface into a dict with keys: <code>interface</code>, <code>ip</code>, <code>status</code>, <code>protocol</code></li>
+<li>Assert the correct number of interfaces is returned (check the template file)</li>
+<li>Assert <code>Loopback0</code> has the correct IP address</li>
+<li>Assert an administratively down interface shows <code>"administratively"</code> as its status</li>
+<li>Assert a subinterface (<code>Ethernet0/0.11</code>) has the expected IP</li>
+</ul>
+<h2 id="exercise-3-parse-show-ip-bgp-summary">Exercise 3: Parse Show IP BGP Summary</h2>
+<p>Send <code>show ip bgp summary</code> and implement <code>parse_bgp_summary()</code>.</p>
+<ul>
+<li>Return a dict with <code>router_id</code>, <code>local_as</code>, and <code>neighbors</code> (list of dicts)</li>
+<li>Each neighbor dict should have <code>neighbor</code>, <code>remote_as</code>, <code>state</code></li>
+<li>Assert the local AS number</li>
+<li>Assert the router ID</li>
+<li>Assert the total neighbor count</li>
+<li>Assert a specific neighbor's remote AS</li>
+<li>Assert that the last neighbor (<code>10.0.0.10</code>) shows an idle state</li>
+</ul>
+<h2 id="exercise-4-parametrize">Exercise 4: Parametrize</h2>
+<p>Use <code>@pytest.mark.parametrize</code> to write data-driven tests across multiple commands.</p>
+<ul>
+<li>Parametrize a test that sends each of the four commands and asserts the output is non-empty</li>
+<li>Parametrize a test that checks each command's output for an expected substring</li>
+<li>Combine all four parsers into a single parametrized test using a <code>(parser, command, assertion)</code> pattern</li>
+</ul>
+<h2 id="teardown">Teardown</h2>
+<p>Stop the mock device when you're done:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>labs/lab_mockit
+docker<span class="w"> </span>compose<span class="w"> </span>down
+</code></pre></div>
+<h2 id="checkpoint">Checkpoint</h2>
+<div class="admonition success">
+<p class="admonition-title">Solution</p>
+<p>A complete solution for this lab is provided in the <code>solutions/lab_mockit/</code> directory.</p>
+<p>Run it with:
+<div class="highlight"><pre><span></span><code><span class="c1"># Make sure the mock device is running first (see Setup above)</span>
+<span class="nb">cd</span><span class="w"> </span>solutions/lab_mockit<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>-v
+</code></pre></div></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tracking", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

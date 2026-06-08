@@ -1,0 +1,1170 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="It Works on My Machine — (Py)Test your Automation">
+      
+      
+      
+      
+      
+        <link rel="next" href="agenda/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>NAF Workshop WS:B4 - AutoCon5</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#workshop-faq-pytest-your-automation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="NAF Workshop WS:B4 - AutoCon5" class="md-header__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="img/NAF.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NAF Workshop WS:B4 - AutoCon5
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FAQ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="NAF Workshop WS:B4 - AutoCon5" class="md-nav__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="img/NAF.png" alt="logo">
+
+    </a>
+    NAF Workshop WS:B4 - AutoCon5
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-this-workshop-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is this workshop about?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-what-experience-level-is-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What experience level is required?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-workshop-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Workshop Preparation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Workshop Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-what-do-i-need-to-install-before-the-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What do I need to install before the workshop?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-are-there-any-pre-reading-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Are there any pre-reading materials?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-do-i-need-to-bring-any-equipment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Do I need to bring any equipment?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-can-i-use-github-codespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Can I use GitHub Codespaces?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#own-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Own Ideas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Own Ideas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-can-i-implement-my-own-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Can I implement my own ideas?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-lab-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Lab access?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#9-will-the-workshop-be-hands-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Will the workshop be hands-on?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10-who-do-i-contact-if-i-have-questions-before-the-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Who do I contact if I have questions before the workshop?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-what-if-i-cannot-keep-up-with-the-pace-of-the-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. What if I cannot keep up with the pace of the workshop?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agenda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agenda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testable_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testable Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lab_refactoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Refactoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lab_fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lab_mocking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lab_parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lab_cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lab_mockit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mock'it
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-what-is-this-workshop-about" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is this workshop about?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-what-experience-level-is-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. What experience level is required?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pre-workshop-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-Workshop Preparation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-Workshop Preparation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-what-do-i-need-to-install-before-the-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What do I need to install before the workshop?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-are-there-any-pre-reading-materials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Are there any pre-reading materials?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-do-i-need-to-bring-any-equipment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Do I need to bring any equipment?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-can-i-use-github-codespaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Can I use GitHub Codespaces?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#own-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Own Ideas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Own Ideas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-can-i-implement-my-own-ideas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Can I implement my own ideas?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-lab-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Lab access?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Technical Questions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Technical Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#9-will-the-workshop-be-hands-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Will the workshop be hands-on?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Information
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10-who-do-i-contact-if-i-have-questions-before-the-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Who do I contact if I have questions before the workshop?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-what-if-i-cannot-keep-up-with-the-pace-of-the-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. What if I cannot keep up with the pace of the workshop?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="workshop-faq-pytest-your-automation">Workshop FAQ: (Py)Test your Automation</h1>
+<p><strong>Proctor(s)</strong>: Urs Baumann, Steinn Orvar Bjarnarson, Bart Dorlandt</p>
+<hr />
+<h2 id="general-information">General Information</h2>
+<h3 id="1-what-is-this-workshop-about">1. What is this workshop about?</h3>
+<p>Modern network automation is software engineering, yet many projects lack effective testing strategies. Rather than relying on lab or production systems for validation, we can test automation logic early, efficiently, and with predictable results.</p>
+<p>This hands-on workshop introduces PyTest for network automation, focusing on testing business logic and mocking device or third-party interfaces. Participants will learn to design testable automation code, isolate external dependencies, and simulate network devices and APIs using mocks.</p>
+<p><strong>Topics</strong>:</p>
+<ul>
+<li>Designing testable automation code</li>
+<li>Separating business logic from device interaction</li>
+<li>PyTest fixtures and parametrization</li>
+<li>Mocking device drivers and third-party APIs</li>
+<li>Simulating failure scenarios (timeouts, auth errors, partial config pushes)</li>
+<li>Building fast, deterministic unit test suites</li>
+<li>Integrating PyTest into CI/CD workflows</li>
+</ul>
+<p>This workshop is ideal for network automation engineers looking to build maintainable, scalable, and production-ready automation systems.</p>
+<h3 id="2-what-experience-level-is-required">2. What experience level is required?</h3>
+<p>This workshop is designed for participants with an intermediate level of experience in Python. You should be comfortable working with Python and have some familiarity with network automation concepts. Prior experience with pytest or testing frameworks is beneficial but not strictly required.</p>
+<hr />
+<h2 id="pre-workshop-preparation">Pre-Workshop Preparation</h2>
+<h3 id="3-what-do-i-need-to-install-before-the-workshop">3. What do I need to install before the workshop?</h3>
+<ul>
+<li><strong>Python (version 3.12)</strong></li>
+<li><strong>Python venv</strong>: To avoid messing up your local Python setup, you should be able to create a virtual Python environment or work in a dedicated container/VM. We highly recommend using <code>uv</code> for this, as it simplifies the process of managing virtual environments and dependencies. This workshop assumes you have <code>uv</code> installed and are familiar with its basic usage. If you haven't used <code>uv</code> before, please take some time to familiarize yourself with it before the workshop. You can find the documentation here: <a href="https://docs.astral.sh/uv/">uv Documentation</a>.</li>
+<li><strong>Unix</strong>: It is recommended that you work on a Unix-based operating system like Linux, MacOS, or WSL.</li>
+<li><strong>Libraries</strong>: pytest, pytest-mock (will be installed as part of the setup)</li>
+<li><strong>IDE</strong>: You can use the IDE you desire. The proctors are most comfortable with VSCode.</li>
+</ul>
+<p>By using <code>uv sync</code>, you are ready for the workshop. (<code>uv</code> will create a virtual environment and install the required dependencies based on the <code>uv.lock</code> file.)</p>
+<h3 id="4-are-there-any-pre-reading-materials">4. Are there any pre-reading materials?</h3>
+<p>There is no mandatory pre-reading, but it does not harm to familiarize yourself with the official documentation of the libraries we will cover:</p>
+<ul>
+<li><a href="https://docs.pytest.org/">pytest Documentation</a></li>
+<li><a href="https://pytest-mock.readthedocs.io/">pytest-mock</a></li>
+<li><a href="https://docs.python.org/3/library/unittest.mock.html">unittest.mock</a></li>
+<li><a href="https://docs.astral.sh/uv/">uv</a></li>
+</ul>
+<h3 id="5-do-i-need-to-bring-any-equipment">5. Do I need to bring any equipment?</h3>
+<p>Yes, please bring a laptop with <code>uv</code> and <code>docker</code> pre-installed. Ensure that your laptop is configured with the appropriate permissions to install and run software.</p>
+<p>Ensure you ran <code>uv sync</code> to create the virtual environment.</p>
+<h3 id="6-can-i-use-github-codespaces">6. Can I use GitHub Codespaces?</h3>
+<p>Yes. All the labs work well with GitHub Codespaces. Make sure your free quota is not exceeded.</p>
+<hr />
+<h2 id="own-ideas">Own Ideas</h2>
+<h3 id="7-can-i-implement-my-own-ideas">7. Can I implement my own ideas?</h3>
+<p>Definitely, it is appreciated to consider how you can apply the learned material to your specific use case. However, time is limited, and the proctors cannot focus on each idea in detail.</p>
+<h3 id="8-lab-access">8. Lab access?</h3>
+<p>No external lab access is required. This workshop focuses on testing automation code locally using mocks and fixtures. All exercises run entirely on your local machine without requiring network device access.</p>
+<hr />
+<h2 id="technical-questions">Technical Questions</h2>
+<h3 id="9-will-the-workshop-be-hands-on">9. Will the workshop be hands-on?</h3>
+<p>Yes! This is a practical, hands-on workshop. You will be actively writing and running Python code and tests throughout the session.</p>
+<hr />
+<h2 id="additional-information">Additional Information</h2>
+<h3 id="10-who-do-i-contact-if-i-have-questions-before-the-workshop">10. Who do I contact if I have questions before the workshop?</h3>
+<p>For any questions or concerns prior to the workshop, feel free to use the Slack channel <a href="https://networkautomationfrm.slack.com/archives/C0AUFJ4KG92"><code>#ac5-ws-b4-pytest</code></a> or contact a proctor directly through the Network Automation Forum Slack.</p>
+<h3 id="11-what-if-i-cannot-keep-up-with-the-pace-of-the-workshop">11. What if I cannot keep up with the pace of the workshop?</h3>
+<p>This workshop is designed for an intermediate skill level, but don't worry if you fall behind. The proctors are happy to assist during the session, and you can also use breaks to catch up. Additionally, each section includes checkpoint solutions to help you stay on track. The goal is to ensure everyone can follow along and gain hands-on experience.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.tracking", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1289 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="It Works on My Machine — (Py)Test your Automation">
+      
+      
+      
+      
+        <link rel="prev" href="../lab_fixtures/">
+      
+      
+        <link rel="next" href="../lab_mocking/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../img/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Mocking - NAF Workshop WS:B4 - AutoCon5</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mocking" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="NAF Workshop WS:B4 - AutoCon5" class="md-header__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="../img/NAF.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NAF Workshop WS:B4 - AutoCon5
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mocking
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="NAF Workshop WS:B4 - AutoCon5" class="md-nav__button md-logo" aria-label="NAF Workshop WS:B4 - AutoCon5" data-md-component="logo">
+      
+  <img src="../img/NAF.png" alt="logo">
+
+    </a>
+    NAF Workshop WS:B4 - AutoCon5
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/bartdorlandt/naf_workshop_pytest" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    bartdorlandt/naf_workshop_pytest
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agenda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agenda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testable_code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Testable Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_refactoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Refactoring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Fixtures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mocking
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Mock?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unittestmock-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unittest.mock Basics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pytest-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pytest-mock
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking-device-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mocking Device Drivers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mocking Device Drivers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-mocking-napalm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Mocking NAPALM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulating-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulating Failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simulating Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#timeout-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timeout Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-configuration-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Configuration Push
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking-external-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mocking External APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monkeypatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        monkeypatch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="monkeypatch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacing-a-function-or-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacing a Function or Attribute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifying-a-dictionary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modifying a Dictionary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-monkeypatch-in-a-fixture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using monkeypatch in a Fixture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monkeypatch-vs-pytest-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        monkeypatch vs pytest-mock
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_mocking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mocking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_parametrization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Parametrization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD Integration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_cicd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB CI/CD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab_mockit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LAB Mock'it
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Mock?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unittestmock-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        unittest.mock Basics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pytest-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pytest-mock
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking-device-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mocking Device Drivers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mocking Device Drivers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-mocking-napalm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Mocking NAPALM
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simulating-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simulating Failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simulating Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#timeout-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Timeout Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authentication-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication Errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-configuration-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial Configuration Push
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mocking-external-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mocking External APIs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monkeypatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        monkeypatch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="monkeypatch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment Variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacing-a-function-or-attribute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacing a Function or Attribute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modifying-a-dictionary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modifying a Dictionary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-monkeypatch-in-a-fixture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using monkeypatch in a Fixture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monkeypatch-vs-pytest-mock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        monkeypatch vs pytest-mock
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Best Practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="mocking">Mocking</h1>
+<h2 id="why-mock">Why Mock?</h2>
+<p>In network automation, we often interact with:</p>
+<ul>
+<li>Network devices (SSH, NETCONF, APIs)</li>
+<li>External APIs (IPAM, CMDB, ticketing systems)</li>
+<li>Databases</li>
+<li>File systems</li>
+</ul>
+<p>Mocking allows us to:</p>
+<ul>
+<li>Test without real devices</li>
+<li>Simulate error conditions</li>
+<li>Control test behavior precisely</li>
+<li>Run tests quickly and reliably</li>
+</ul>
+<h2 id="unittestmock-basics">unittest.mock Basics</h2>
+<p>Python's <code>unittest.mock</code> provides the core mocking functionality:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">MagicMock</span><span class="p">,</span> <span class="n">patch</span>
+
+<span class="c1"># Create a mock object</span>
+<span class="n">mock_device</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+
+<span class="c1"># Configure return values</span>
+<span class="n">mock_device</span><span class="o">.</span><span class="n">get_facts</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;hostname&quot;</span><span class="p">:</span> <span class="s2">&quot;switch01&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;vendor&quot;</span><span class="p">:</span> <span class="s2">&quot;Arista&quot;</span>
+<span class="p">}</span>
+
+<span class="c1"># Use the mock</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">mock_device</span><span class="o">.</span><span class="n">get_facts</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;hostname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;switch01&quot;</span>
+
+<span class="c1"># Verify calls</span>
+<span class="n">mock_device</span><span class="o">.</span><span class="n">get_facts</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+</code></pre></div>
+<p>Documentation: <a href="https://docs.python.org/3/library/unittest.mock.html">unittest.mock</a></p>
+<h2 id="pytest-mock">pytest-mock</h2>
+<p>The <code>pytest-mock</code> plugin provides a <code>mocker</code> fixture that integrates cleanly with pytest:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_device_connection</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="c1"># Patch a function</span>
+    <span class="n">mock_connect</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;mymodule.connect_to_device&quot;</span><span class="p">)</span>
+    <span class="n">mock_connect</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">(</span><span class="n">hostname</span><span class="o">=</span><span class="s2">&quot;switch01&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Your test code here</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">connect_and_get_hostname</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">==</span> <span class="s2">&quot;switch01&quot;</span>
+    <span class="n">mock_connect</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+</code></pre></div>
+<p>Documentation: <a href="https://pytest-mock.readthedocs.io/">pytest-mock</a></p>
+<h2 id="mocking-device-drivers">Mocking Device Drivers</h2>
+<h3 id="example-mocking-napalm">Example: Mocking NAPALM</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_get_device_facts</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="c1"># Create a mock device</span>
+    <span class="n">mock_device</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">mock_device</span><span class="o">.</span><span class="n">get_facts</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;hostname&quot;</span><span class="p">:</span> <span class="s2">&quot;switch01&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vendor&quot;</span><span class="p">:</span> <span class="s2">&quot;Arista&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;model&quot;</span><span class="p">:</span> <span class="s2">&quot;cEOS&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;uptime&quot;</span><span class="p">:</span> <span class="mi">86400</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Patch the driver</span>
+    <span class="n">mock_driver</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;napalm.get_network_driver&quot;</span><span class="p">)</span>
+    <span class="n">mock_driver</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_device</span>
+
+    <span class="c1"># Test your function</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">mymodule</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_device_info</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">get_device_info</span><span class="p">(</span><span class="s2">&quot;192.168.1.1&quot;</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;hostname&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;switch01&quot;</span>
+</code></pre></div>
+<h2 id="simulating-failures">Simulating Failures</h2>
+<h3 id="timeout-errors">Timeout Errors</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">socket</span><span class="w"> </span><span class="kn">import</span> <span class="n">timeout</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_connection_timeout</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="n">mock_connect</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;mymodule.connect_to_device&quot;</span><span class="p">)</span>
+    <span class="n">mock_connect</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">timeout</span><span class="p">(</span><span class="s2">&quot;Connection timed out&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
+        <span class="n">connect_to_device</span><span class="p">(</span><span class="s2">&quot;192.168.1.1&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="authentication-errors">Authentication Errors</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_auth_failure</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="n">mock_device</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">mock_device</span><span class="o">.</span><span class="n">open</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Authentication failed&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Test that your code handles auth failures gracefully</span>
+</code></pre></div>
+<h3 id="partial-configuration-push">Partial Configuration Push</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_partial_config_failure</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="n">mock_device</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">mock_device</span><span class="o">.</span><span class="n">load_merge_candidate</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">mock_device</span><span class="o">.</span><span class="n">commit_config</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">Exception</span><span class="p">(</span>
+        <span class="s2">&quot;Config commit failed: interface Ethernet5 does not exist&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Test rollback behavior</span>
+</code></pre></div>
+<h2 id="mocking-external-apis">Mocking External APIs</h2>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_ipam_lookup</span><span class="p">(</span><span class="n">mocker</span><span class="p">):</span>
+    <span class="n">mock_response</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+    <span class="n">mock_response</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;192.168.1.1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hostname&quot;</span><span class="p">:</span> <span class="s2">&quot;switch01&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;DC1&quot;</span>
+    <span class="p">}</span>
+    <span class="n">mock_response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">=</span> <span class="mi">200</span>
+
+    <span class="n">mock_get</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s2">&quot;requests.get&quot;</span><span class="p">)</span>
+    <span class="n">mock_get</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_response</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lookup_device_in_ipam</span><span class="p">(</span><span class="s2">&quot;192.168.1.1&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;DC1&quot;</span>
+</code></pre></div>
+<h2 id="monkeypatch">monkeypatch</h2>
+<p>pytest's built-in <code>monkeypatch</code> fixture is a lightweight alternative to <code>unittest.mock</code> for replacing attributes, environment variables, and dictionary entries. All changes are automatically reverted after each test — no teardown needed.</p>
+<h3 id="environment-variables">Environment Variables</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_uses_custom_api_url</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setenv</span><span class="p">(</span><span class="s2">&quot;API_URL&quot;</span><span class="p">,</span> <span class="s2">&quot;https://staging.example.com&quot;</span><span class="p">)</span>
+    <span class="c1"># Code that reads os.environ[&quot;API_URL&quot;] will see the staging URL</span>
+</code></pre></div>
+<h3 id="replacing-a-function-or-attribute">Replacing a Function or Attribute</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">network_utils</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_get_device_uses_staging</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setattr</span><span class="p">(</span><span class="n">network_utils</span><span class="o">.</span><span class="n">requests</span><span class="p">,</span> <span class="s2">&quot;get&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">mock_response</span><span class="p">)</span>
+</code></pre></div>
+<p>Patch at the same location the code imports from — the same rule as <code>mocker.patch</code>.</p>
+<h3 id="modifying-a-dictionary">Modifying a Dictionary</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">test_with_custom_config</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setitem</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;timeout&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="using-monkeypatch-in-a-fixture">Using monkeypatch in a Fixture</h3>
+<p><code>monkeypatch</code> composes naturally with other fixtures, which is useful for setting up environment state shared across multiple tests:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">set_env</span><span class="p">(</span><span class="n">monkeypatch</span><span class="p">):</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setenv</span><span class="p">(</span><span class="s2">&quot;API_URL&quot;</span><span class="p">,</span> <span class="s2">&quot;https://test.example.com&quot;</span><span class="p">)</span>
+    <span class="n">monkeypatch</span><span class="o">.</span><span class="n">setenv</span><span class="p">(</span><span class="s2">&quot;API_TOKEN&quot;</span><span class="p">,</span> <span class="s2">&quot;test-token&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="monkeypatch-vs-pytest-mock">monkeypatch vs pytest-mock</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>monkeypatch</code></th>
+<th><code>pytest-mock</code> (<code>mocker</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Built-in</td>
+<td>Yes</td>
+<td>Requires <code>pytest-mock</code></td>
+</tr>
+<tr>
+<td>Call assertions</td>
+<td>No</td>
+<td>Yes (<code>assert_called_once_with</code>)</td>
+</tr>
+<tr>
+<td>Best for</td>
+<td>Env vars, simple attribute swaps</td>
+<td>Verifying interactions with external code</td>
+</tr>
+</tbody>
+</table>
+<h2 id="best-practices">Best Practices</h2>
+<ol>
+<li><strong>Mock at the boundary</strong> - Mock external interfaces, not internal logic</li>
+<li><strong>Use spec</strong> - <code>Mock(spec=RealClass)</code> ensures mock has same interface</li>
+<li><strong>Verify interactions</strong> - Use <code>assert_called_with()</code> to verify correct usage</li>
+<li><strong>Don't over-mock</strong> - If you're mocking everything, your test may not be valuable</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tracking", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
