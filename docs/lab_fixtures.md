@@ -15,7 +15,7 @@ source .venv/bin/activate
 ```
 > Ensure your editor is aware of the virtual environment.
 
-Continue in your lab directory or create a new one:
+create the lab_fixtures directory at the root of the project:
 
 ```bash
 # from the root of this project
