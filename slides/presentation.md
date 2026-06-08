@@ -149,6 +149,47 @@ style: |
 
 ---
 
+
+# Admin
+
+## Wi-Fi & Connectivity
+- Network Name: `AutoCon5`
+- Password: `MunichRocks!`
+
+## Resources
+- Docs: [https://bartdorlandt.github.io/naf_workshop_pytest/](https://bartdorlandt.github.io/naf_workshop_pytest/)
+- Repo: [https://github.com/bartdorlandt/naf_workshop_pytest](https://github.com/bartdorlandt/naf_workshop_pytest)
+
+---
+
+# Setup
+
+- `git clone https://github.com/bartdorlandt/naf_workshop_pytest.git`
+- `cd naf_workshop_pytest`
+- Install dependencies with one of the options:
+  - `uv sync` || `task init`
+- `source .venv/bin/activate` + IDE setup
+
+---
+<!-- 
+# Setup without UV (not recommended)
+
+If you really don't like UV or can not install it:
+
+> Use Python 3.12
+
+```bash
+python3 -m venv .venv
+cat << EOF >> pyproject.toml
+
+[tool.setuptools]
+py-modules = []
+EOF
+.venv/bin/pip install --require-virtualenv .
+```
+
+--- -->
+
 # The Problem
 
 > "I tested it locally and it broke in production"
@@ -246,6 +287,21 @@ FAILED test_assert1.py::test_function - assert 3 == 4
 ============================ 1 failed in 0.12s =============================
 ```
 
+---
+
+# Test Discovery
+
+- Start: `testpaths` (default: cwd)
+- Recurse into directories
+- Search for `test_*.py` or `*_test.py` files
+- From those files, collect test items:
+  - `test` prefixed test functions or methods outside of class.
+  - `test` prefixed test functions or methods inside `Test` prefixed test classes
+
+<!-- 
+https://docs.pytest.org/en/latest/explanation/goodpractices.html#conventions-for-python-test-discovery
+
+-->
 ---
 
 # Workshop Goal
@@ -581,3 +637,35 @@ jobs:
 - Feedback: Welcomed!
 
 **Thank you!**
+
+---
+
+# Links
+
+- PyTest Documentation
+  [https://docs.pytest.org/en/latest](https://docs.pytest.org/en/latest)
+- PyTest Tips and Tricks
+  [https://pyte.st/ref.pdf](https://pyte.st/ref.pdf)
+- PyTest Plugins
+  [https://docs.pytest.org/en/stable/reference/plugin_list.html](https://docs.pytest.org/en/stable/reference/plugin_list.html)
+
+
+---
+
+# Infrastructure Dependencies
+
+- Testcontainer
+  [https://testcontainers.com/](https://testcontainers.com/)
+  [https://testcontainers-python.readthedocs.io/](https://testcontainers-python.readthedocs.io/)
+- cisshgo
+  [https://github.com/tbotnz/cisshgo](https://github.com/tbotnz/cisshgo)
+- Mock'it
+  [https://slurpit.io/mockit/](https://slurpit.io/mockit/)
+  
+---
+
+# Testing Templates
+
+- Infrahub SDK contains a PyTest plugin to test jinja2 templates
+  https://docs.infrahub.app/testing-framework/overview
+
