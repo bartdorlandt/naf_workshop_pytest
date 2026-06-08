@@ -15,7 +15,7 @@ source .venv/bin/activate
 ```
 > Ensure your editor is aware of the virtual environment.
 
-Continue in your lab directory or create a new one:
+Copy the mocking lab directory to your project root:
 
 ```bash
 # from the root of this project
