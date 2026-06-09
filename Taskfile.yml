@@ -136,6 +136,14 @@ tasks:
       - open http://localhost:8080/
       - marp -s {{.OPTIONS}} . -w
 
+  export:pdf:
+    desc: Export the presentation to PDF
+    dir: slides
+    vars:
+      OPTIONS: "{{.MAIN_OPTIONS}} --pdf {{.METADATA}}"
+    cmds:
+      - marp {{.OPTIONS}} presentation.md -o presentation.pdf
+
   export:pptx:
     desc: Export the presentation to PPTX
     dir: slides
